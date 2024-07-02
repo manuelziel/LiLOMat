@@ -3,7 +3,8 @@
 ----------------------------------------------------------------
 # 1. Gesundheitsversorgung
 # 2. Demokratie
-# 3. Tiefengeothermie
+# 3. Umwelt
+# 4. Tiefengeothermie
 --------------------------------------------------------------*/
 
 
@@ -47,12 +48,136 @@ const quizDataLiLO = [
         "correctAnswerIndex": 3
     },
     {
+        "question": "Welche Struktur fordert die LiLO für das Ortenau Klinikum, um Transparenz zu gewährleisten?",
+        "options": ["Anstalt öffentlichen Rechts", "Eigenbetrieb öffentlicher Kontrolle", "Privatisierung", "Keine Änderung"],
+        "correctAnswerIndex": 1
+    },
+    {
         "question": "Welcher Ort in der Ortenau hat das größte Krankenhaus?",
         "options": ["Offenburg", "Lahr", "Kehl", "Achern"],
         "correctAnswerIndex": 0
     },
     /*--------------------------------------------------------------
-    # 2. Demokratie
+    # 2. Nahverkehr
+    --------------------------------------------------------------*/
+    {
+        "question": "Welche Verkehrswende-Maßnahme konnte die LiLO bereits erfolgreich durch Protestaktionen erreichen?",
+        "options": ["30 € Monatsticket", "Mehr Seniorenparkplätze", "Verbot von Privatautos in Innenstädten", "Verdoppelung der Parkgebühren"],
+        "correctAnswerIndex": 0
+    },
+    {
+        "question": "Welches Menschenrecht nennt die LiLO in Bezug auf Mobilität?",
+        "options": ["kostenlose Fahrräder", "Gratis-Parkplätze", "barrierefreie Straßen", "Recht auf Mobilität"],
+        "correctAnswerIndex": 3
+    },
+    {
+        "question": "Was ist ein Zukunftsprojekt von LiLO für das Jahr 2030 im Bereich Verkehrswende?",
+        "options": ["Autofreie Innenstadtviertel", "Bau von Wasserstrassen", "Reaktivierung der Straßenbahnlinien", "Verbot von Fahrradwegen"],
+        "correctAnswerIndex": 2
+    },
+    {
+        "question": "Welche Taktfrequenz strebt die LiLO für den öffentlichen Nahverkehr in der Ortenau an?",
+        "options": ["Stundentakt", "Halbstundentakt", "Zwei-Stunden-Takt", "Viertelstundentakt"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Maßnahme plant die Ortenau zur Verbesserung des Nahverkehrs?",
+        "options": ["Mehr Buslinien", "Fahrradverleihsystem", "Neue Zugstrecken", "Carsharing"],
+        "correctAnswerIndex": 2
+    },
+    {
+        "question": "Welche Stadt in der Ortenau hat die meisten Verkehrsprobleme?",
+        "options": ["Offenburg", "Lahr", "Kehl", "Achern"],
+        "correctAnswerIndex": 0
+    },
+    {
+        "question": "Welche Maßnahme zur Verkehrsberuhigung ist in der Ortenau umstritten?",
+        "options": ["Tempo-30-Zonen", "Verkehrsberuhigte Bereiche", "Einbahnstraßen", "Fahrradstraßen"],
+        "correctAnswerIndex": 3
+    },
+    {
+        "question": "Welches Projekt zur Förderung des Radverkehrs wurde kürzlich gestartet?",
+        "options": ["Fahrradverleihsystem", "Neuer Fahrradweg", "Fahrradparkhäuser", "Fahrradkulturfestival"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Was sind die Hauptprobleme im öffentlichen Nahverkehr der Ortenau?",
+        "options": ["Unpünktlichkeit", "Hohe Preise", "Überfüllung", "Schlechte Verbindungen"],
+        "correctAnswerIndex": 3
+    },
+    /*--------------------------------------------------------------
+    # 3. Wohnungsbau
+    --------------------------------------------------------------*/
+    {
+        "question": "Wie geht die LiLO mit dem Thema Leerstand von Wohnungen um?",
+        "options": ["Nichts", "Kommunen als Vermieter", "Steuererhöhung", "Enteignung"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Was fordert die LiLO für ältere Menschen in Bezug auf Wohnraum?",
+        "options": ["Großwohnsiedlungen", "bezahlbaren Wohnraum", "Keine Maßnahmen", "Pflegeheime"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Was ist das größte Problem im Bereich Wohnungsbau in der Ortenau?",
+        "options": ["Wohnungsknappheit", "Hohe Mieten", "Schlechte Bauqualität", "Lange Bauzeiten"],
+        "correctAnswerIndex": 0
+    },
+    {
+        "question": "Welche Herausforderung hat die Ortenau bei der Integration von Migranten?",
+        "options": ["Sprachbarrieren", "Wohnungsknappheit", "Arbeitslosigkeit", "Diskriminierung"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Was soll durch die Schaffung einer kreiseigenen Dachgesellschaft für Wohnungsbau erreicht werden?",
+        "options": ["Luxuswohnungen", "bezahlbarer Wohnraum", "Wohngemeinschaften", "Gewerbeflächen"],
+        "correctAnswerIndex": 1
+    },
+    /*--------------------------------------------------------------
+    # 4. Umwelt
+    --------------------------------------------------------------*/
+    {
+        "question": "Welche Priorität ist der LiLO im Ausbau der regenerativen Energien am höchsten?",
+        "options": ["Windkraftanlagen", "Photovoltaik", "Kernenergie", "Kein Ausbau"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Maßnahme unterstützt LiLO zur Luftqualität?",
+        "options": ["Mehr Einfamilienhäuser", "Mehr Windräder", "Innenstadtbegrünung", "Weniger Baumbestände"],
+        "correctAnswerIndex": 2
+    },
+    {
+        "question": "Welche Art der Landwirtschaft setzt sich die LiLO im Ortenaukreis ein?",
+        "options": ["Intensivlandwirtschaft", "Alternative Landwirtschaft", "Keine Änderungen", "Monokulturen"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Umweltprobleme sind in der Ortenau am gravierendsten?",
+        "options": ["Luftverschmutzung", "Wasserverschmutzung", "Abholzung", "Bodenerosion"],
+        "correctAnswerIndex": 0
+    },
+    {
+        "question": "Welche Stadt in der Ortenau hat die schlechteste Luftqualität?",
+        "options": ["Offenburg", "Lahr", "Kehl", "Oberkirch"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Stadt hat ein neues Klimaschutzkonzept entwickelt?",
+        "options": ["Lahr", "Offenburg", "Achern", "Kehl"],
+        "correctAnswerIndex": 3
+    },
+    {
+        "question": "Welche Stadt hat die meisten Parks und Grünflächen in der Ortenau?",
+        "options": ["Lahr", "Offenburg", "Kehl", "Oberkirch"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Stadt ist bekannt für ihre Bemühungen im Klimaschutz in der Ortenau?",
+        "options": ["Offenburg", "Kehl", "Oberkirch", "Gengenbach"],
+        "correctAnswerIndex": 1
+    },
+    /*--------------------------------------------------------------
+    # 4. Demokratie
     --------------------------------------------------------------*/
     {
         "question": "Was fordert die LiLO für zukünftige Landratswahlen?",
@@ -60,7 +185,7 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     /*--------------------------------------------------------------
-    # 3. Tiefengeothermie
+    # 5. Tiefengeothermie
     --------------------------------------------------------------*/
     {
         "question": "Neben Öl und Gas soll in Neuried Altenheim auch welches begehrte Material gefördert werden?",
@@ -78,49 +203,9 @@ const quizDataLiLO = [
     {
         "question": "Was ist das Hauptziel der LiLO?",
         "options": ["Umweltschutz", "Gesundheitsversorgung", "Bildung", "Wirtschaftsförderung"],
-        "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Verkehrswende-Maßnahme konnte die LiLO bereits erfolgreich durch Protestaktionen erreichen?",
-        "options": ["30 € Monatsticket", "Mehr Seniorenparkplaetze", "Verbot von Privatautos in Innenstädten", "Verdoppelung der Parkgebühren"],
-        "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welches Menschenrecht nennt die LiLO in Bezug auf Mobilität?",
-        "options": ["kostenlose Nutzung von Fahrraedern", "Gratis-Parkplätze", "barrierefreie Straßen", "Recht auf Mobilität"],
-        "correctAnswerIndex": 3
-    },
-    {
-        "question": "Was ist ein Zukunftsprojekt von LiLO für das Jahr 2030 im Bereich Verkehrswende?",
-        "options": ["Autofreie Innenstadtviertel", "Bau von Wasserstrassen", "Reaktivierung der Straßenbahnlinien", "Verbot von Fahrradwegen"],
-        "correctAnswerIndex": 2
-    },
-    {
-        "question": "Was soll durch die Schaffung einer kreiseigenen Dachgesellschaft für Wohnungsbau erreicht werden?",
-        "options": ["Luxuswohnungen", "bezahlbarer Wohnraum", "Wohngemeinschaften", "Gewerbeflächen"],
         "correctAnswerIndex": 1
     },
     /*--------------------------------------------------------------*/
-    {
-        "question": "Welche Maßnahme plant die Ortenau zur Verbesserung des Nahverkehrs?",
-        "options": ["Mehr Buslinien", "Fahrradverleihsystem", "Neue Zugstrecken", "Carsharing"],
-        "correctAnswerIndex": 2
-    },
-    {
-        "question": "Welche Stadt ist bekannt für ihre Bemühungen im Klimaschutz in der Ortenau?",
-        "options": ["Offenburg", "Kehl", "Oberkirch", "Gengenbach"],
-        "correctAnswerIndex": 1
-    },
-    {
-        "question": "Welche Art von Energie wird in der Ortenau stark gefördert?",
-        "options": ["Windenergie", "Solarenergie", "Kernenergie", "Fossile Brennstoffe"],
-        "correctAnswerIndex": 1
-    },
-    {
-        "question": "Welches Projekt zur Förderung des Radverkehrs wurde kürzlich gestartet?",
-        "options": ["Fahrradverleihsystem", "Neuer Fahrradweg", "Fahrradparkhäuser", "Fahrradkulturfestival"],
-        "correctAnswerIndex": 1
-    },
     {
         "question": "Wie unterstützt die Ortenau Familien?",
         "options": ["Kita-Ausbau", "Familienzentren", "Ferienprogramme", "Elterngeld"],
@@ -132,19 +217,9 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     {
-        "question": "Welche Stadt hat ein neues Klimaschutzkonzept entwickelt?",
-        "options": ["Lahr", "Offenburg", "Achern", "Kehl"],
-        "correctAnswerIndex": 3
-    },
-    {
         "question": "Welche Initiative fördert die regionale Wirtschaft in der Ortenau?",
         "options": ["Start-up Förderung", "Einkaufszentren", "Exportförderung", "Regionale Messen"],
         "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Veranstaltung fördert das kulturelle Leben in der Ortenau?",
-        "options": ["Stadtfeste", "Theaterfestivals", "Musikfestivals", "Kunstmärkte"],
-        "correctAnswerIndex": 2
     },
     {
         "question": "Wie wird die Integration von Migranten in der Ortenau unterstützt?",
@@ -152,39 +227,14 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     {
-        "question": "Welche Stadt hat die meisten Parks und Grünflächen in der Ortenau?",
-        "options": ["Lahr", "Offenburg", "Kehl", "Oberkirch"],
-        "correctAnswerIndex": 1
-    },
-    {
         "question": "Wie unterstützt die Ortenau Senioren?",
         "options": ["Seniorenzentren", "Freizeitangebote", "Pflegedienste", "Bildungsangebote"],
-        "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Stadt in der Ortenau hat die schlechteste Luftqualität?",
-        "options": ["Offenburg", "Lahr", "Kehl", "Oberkirch"],
-        "correctAnswerIndex": 1
-    },
-    {
-        "question": "Was sind die Hauptprobleme im öffentlichen Nahverkehr der Ortenau?",
-        "options": ["Unpünktlichkeit", "Hohe Preise", "Überfüllung", "Schlechte Verbindungen"],
-        "correctAnswerIndex": 3
-    },
-    {
-        "question": "Welche Umweltprobleme sind in der Ortenau am gravierendsten?",
-        "options": ["Luftverschmutzung", "Wasserverschmutzung", "Abholzung", "Bodenerosion"],
         "correctAnswerIndex": 0
     },
     {
         "question": "Welches Bauprojekt in der Ortenau sorgt für die meisten Bürgerproteste?",
         "options": ["Neubau der B33", "Industriepark Offenburg", "Wohngebiete in Kehl", "Paul's' Sandburg"],
         "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Herausforderung hat die Ortenau bei der Integration von Migranten?",
-        "options": ["Sprachbarrieren", "Wohnungsknappheit", "Arbeitslosigkeit", "Diskriminierung"],
-        "correctAnswerIndex": 1
     },
     {
         "question": "Welche Stadt in der Ortenau hat die höchste Arbeitslosenquote?",
@@ -212,11 +262,6 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     {
-        "question": "Welche Stadt in der Ortenau hat die meisten Verkehrsprobleme?",
-        "options": ["Offenburg", "Lahr", "Kehl", "Achern"],
-        "correctAnswerIndex": 0
-    },
-    {
         "question": "Was ist der Hauptkritikpunkt an der digitalen Infrastruktur in der Ortenau?",
         "options": ["Langsame Internetverbindungen", "Hohe Kosten", "Mangelnde Verfügbarkeit", "Schlechte Wartung"],
         "correctAnswerIndex": 0
@@ -230,15 +275,5 @@ const quizDataLiLO = [
         "question": "Welche Herausforderung gibt es bei der Energiewende in der Ortenau?",
         "options": ["Hohe Kosten", "Widerstand der Bürger", "Mangelnde Technologie", "Langsame Umsetzung"],
         "correctAnswerIndex": 1
-    },
-    {
-        "question": "Was ist das größte Problem im Bereich Wohnungsbau in der Ortenau?",
-        "options": ["Wohnungsknappheit", "Hohe Mieten", "Schlechte Bauqualität", "Lange Bauzeiten"],
-        "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Maßnahme zur Verkehrsberuhigung ist in der Ortenau umstritten?",
-        "options": ["Tempo-30-Zonen", "Verkehrsberuhigte Bereiche", "Einbahnstraßen", "Fahrradstraßen"],
-        "correctAnswerIndex": 3
     },
 ];

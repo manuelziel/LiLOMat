@@ -20,15 +20,15 @@ Usage:
 
 == Installation ==
 1. Show Drives: sudo lsblk
-2. Compress image sudo dd if=/dev/sdX bs=4M | gzip > ./backup.img.gz (Aktuelles Verzeichniss)
-3. Write Image :sudo dd if=/pfad/zum/backup.img.gz bs=4M | gzip -dc | sudo dd of=/dev/sdY bs=4M
+2. Compress image sudo dd if=/dev/sdX bs=4M | gzip > ./backup.img.gz (Aktuelles Verzeichnis)
+3. Write Image: sudo dd if=/pfad/zum/backup.img.gz bs=4M | gzip -dc | sudo dd of=/dev/sdY bs=4M
 
     == Node Red ==
     1. bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
     2. sudo systemctl enable nodered.service
     3. node-red-start
     4. Use "chmod a+rw /dev/ttyS0" for UART permission
-    5. Set raspi-config UART on without terminal
+    5. Set 'raspi-config' UART on without terminal
     6. Import Project
     7. Reboot
 
@@ -44,7 +44,8 @@ Usage:
 == Changelog ==
 Semantic Versioning -> https://semver.org/
 
+= 0.0.1 alpha01 - 2024-07-03 =
+- Update questions
 
-
-= 0.0.1 alpha - 2024-06-24 =
-- start
+= 0.0.1 alpha - 2024-07-02 =
+- Start
