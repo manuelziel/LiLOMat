@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Http Post Thermal Printer</title>
+</head>
+<body>
+  <input type="text" id="printText" placeholder="Enter text to print">
+  <button onclick="printText()">Print</button>
+
+  <script>
+    function printText() {
+      const text = document.getElementById('printText').value;
+
+      fetch('http://localhost:1880/print', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: text })
+      })
+      .then(response => response.text())
+      .then(data => {
+        console.log(data);
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+</body>
+</html>

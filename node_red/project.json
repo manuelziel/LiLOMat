@@ -1,0 +1,270 @@
+[
+    {
+        "id": "f73c0feb804618e7",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "5963a36a986c2a11",
+        "type": "serial-port",
+        "name": "UART",
+        "serialport": "/dev/ttyS0",
+        "serialbaud": "9600",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": "10000"
+    },
+    {
+        "id": "363f3b1fe4a93067",
+        "type": "websocket-listener",
+        "path": "/print",
+        "wholemsg": "false"
+    },
+    {
+        "id": "053e4133366f87b1",
+        "type": "websocket-listener",
+        "path": "/tone",
+        "wholemsg": "false"
+    },
+    {
+        "id": "54953672419a803b",
+        "type": "websocket-listener",
+        "path": "/bmp",
+        "wholemsg": "false"
+    },
+    {
+        "id": "833551cd14dd254f",
+        "type": "serial out",
+        "z": "f73c0feb804618e7",
+        "name": "UART",
+        "serial": "5963a36a986c2a11",
+        "x": 1030,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "54177f11fc1d9184",
+        "type": "function",
+        "z": "f73c0feb804618e7",
+        "name": "function",
+        "func": "var message = msg.payload;\n\n// Replace German umlauts with their CP437 equivalents\n// CP437 is a character encoding that includes German umlauts in specific positions.\nmessage = message.replace(/ä/g, '\\x84');\nmessage = message.replace(/ö/g, '\\x94');\nmessage = message.replace(/ü/g, '\\x81');\nmessage = message.replace(/Ä/g, '\\x8E');\nmessage = message.replace(/Ö/g, '\\x99');\nmessage = message.replace(/Ü/g, '\\x9A');\nmessage = message.replace(/ß/g, '\\xE1');\n\n// Encode message in CP437 using 'latin1' to handle direct byte values\nvar buffer = Buffer.from(message, 'latin1');\nmsg.payload = buffer;\n\nreturn [msg];\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "833551cd14dd254f"
+            ]
+        ]
+    },
+    {
+        "id": "0b1efd86bdf68f79",
+        "type": "comment",
+        "z": "f73c0feb804618e7",
+        "name": "Post Message from Quiz",
+        "info": "",
+        "x": 330,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "124f84c8b47f42f9",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": " /media/lilo/Stick/lilomat/script/shutdown.sh",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1140,
+        "y": 460,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "965176befcff6e06",
+        "type": "comment",
+        "z": "f73c0feb804618e7",
+        "name": "Post Answer Tone from Quiz",
+        "info": "",
+        "x": 340,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "1b0f9c281732a4f5",
+        "type": "function",
+        "z": "f73c0feb804618e7",
+        "name": "function",
+        "func": "var message = msg.payload;\n\n// Initialisiere die Ausgänge mit null\nvar output1 = null;\nvar output2 = null;\nvar output3 = null;\nvar output4 = null;\n\n// Switch-Anweisung, um Nachrichten zu verschiedenen Ausgängen zu leiten\nswitch (message) {\n    case \"correct answer\":\n        output1 = msg;\n        break;\n    case \"wrong answer\":\n        output2 = msg;\n        break;\n    case \"push\":\n        output3 = msg;\n        break\n    case \"end\":\n        output4 = msg;\n        break;\n    default:\n        // Keine Aktion, Nachricht wird verworfen\n        break;\n}\n\n// Rückgabe der Nachrichten an die verschiedenen Ausgänge\nreturn [output1, output2, output3, output4];",
+        "outputs": 4,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 700,
+        "wires": [
+            [
+                "a955e9dbbc31add4"
+            ],
+            [
+                "1afeddeca7ed5a8b"
+            ],
+            [
+                "bb6a9abcbb543d39"
+            ],
+            [
+                "96dc5414a88bafdf"
+            ]
+        ]
+    },
+    {
+        "id": "a955e9dbbc31add4",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": "python3 /media/lilo/Stick/lilomat/script/positive_tone.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1180,
+        "y": 680,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "1afeddeca7ed5a8b",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": "python3 /media/lilo/Stick/lilomat/script/negative_tone.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1180,
+        "y": 740,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "96dc5414a88bafdf",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": "python3 /media/lilo/Stick/lilomat/script/win_tone.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1170,
+        "y": 860,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bb6a9abcbb543d39",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": "python3 /media/lilo/Stick/lilomat/script/push_tone.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "10",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1170,
+        "y": 800,
+        "wires": [
+            [],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "94059a886e9297ed",
+        "type": "websocket in",
+        "z": "f73c0feb804618e7",
+        "name": "",
+        "server": "053e4133366f87b1",
+        "client": "",
+        "x": 280,
+        "y": 700,
+        "wires": [
+            [
+                "1b0f9c281732a4f5"
+            ]
+        ]
+    },
+    {
+        "id": "37ab15f489e7da73",
+        "type": "websocket in",
+        "z": "f73c0feb804618e7",
+        "name": "",
+        "server": "363f3b1fe4a93067",
+        "client": "",
+        "x": 280,
+        "y": 360,
+        "wires": [
+            [
+                "54177f11fc1d9184"
+            ]
+        ]
+    },
+    {
+        "id": "59e5d7ba2976df6d",
+        "type": "websocket in",
+        "z": "f73c0feb804618e7",
+        "name": "",
+        "server": "54953672419a803b",
+        "client": "",
+        "x": 280,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    }
+]

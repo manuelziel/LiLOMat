@@ -1,0 +1,14 @@
+[Unit]
+Description=Kiosk Mode
+Wants=graphical.target
+After=graphical.target
+
+[Service]
+User=lilo
+Group=lilo
+Environment=DISPLAY=:0
+ExecStart=/bin/bash /home/lilo/start_kiosk.sh
+Restart=always
+
+[Install]
+WantedBy=graphical.target

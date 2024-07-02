@@ -1,0 +1,265 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# 1. CSS Variables
+# 2. Controls
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# 1. CSS Variables
+--------------------------------------------------------------*/
+:root {
+	/* Default colors (LiLO) */
+	--primary-color-one: #cc3333;
+	--primary-color-two: #333333;
+	/* must be dark 20% */
+	--primary-color-three: #ffffff;
+	/* must be white */
+	--secondary-color-one: #808080;
+	/* must be 50%*/
+	--secondary-color-two: #E6E6E6;
+	/* must be light 80% */
+	--accent-color: #CC3333;
+}
+
+body.lhl {
+	/* LHL colors */
+	--primary-color-one: #408000;
+	--primary-color-two: #333333;
+	/* must be dark 20%*/
+	--primary-color-three: #ffffff;
+	/* must be white */
+	--secondary-color-one: #808080;
+	/* must be 50% */
+	--secondary-color-two: #E6E6E6;
+	/* must be light 80% */
+	--accent-color: #408000;
+}
+
+body.manu {
+	/* Manu colors */
+	--primary-color-one: #3771c8;
+	--primary-color-two: #060E1A;
+	/* must be dark 20%*/
+	--primary-color-three: #ffffff;
+	/* must be white */
+	--secondary-color-one: #808080;
+	/* must be 50% */
+	--secondary-color-two: #E6E6E6;
+	/* must be light 80% */
+	--accent-color: #3771c8;
+}
+
+:root {
+	--lilo--primary-color: var(--primary-color-one);
+	--lilo--secondary-color: var(--primary-color-one);
+	--lilo--tertiary-color: var(--primary-color-one);
+	--lilo--accent-color: var(--accent-color);
+	--lilo--contrast-color: var(--accent-color);
+	--lilo--highlight-color: var(--accent-color);
+	--lilo--light-gray-color: var(--secondary-color-two);
+	--lilo--gray-color: var(--secondary-color-one);
+	--lilo--dark-gray-color: var(--primary-color-two);
+	--lilo--page-background-color: var(--primary-color-three);
+	--lilo--shadow-color: var(--secondary-color-one);
+	--lilo--text-color: rgba(0, 0, 0, 0.9);
+	--lilo--medium-text-color: rgba(0, 0, 0, 0.6);
+	--lilo--light-text-color: rgba(0, 0, 0, 0.4);
+	--lilo--medium-border-color: rgba(0, 0, 0, 0.3);
+	--lilo--light-border-color: rgba(0, 0, 0, 0.1);
+	--lilo--content-border-width: 1px solid;
+	--lilo--link-color: var(--primary-color-one);
+	--lilo--link-hover-color: var(--primary-color-one);
+	--lilo--button-color: var(--primary-color-one);
+	--lilo--button-text-color: var(--primary-color-three);
+	--lilo--button-hover-color: var(--primary-color-two);
+	--lilo--button-hover-text-color: var(--primary-color-three);
+	--lilo--header-background-color: var(--primary-color-three);
+	--lilo--header-text-color: var(--primary-color-two);
+	--lilo--site-title-color: var(--primary-color-one);
+	--lilo--site-title-hover-color: var(--primary-color-two);
+	--lilo--navi-background-color: var(--primary-color-two);
+	--lilo--navi-text-color: var(--primary-color-three);
+	--lilo--navi-hover-color: var(--primary-color-one);
+	--lilo--navi-hover-text-color: var(--primary-color-three);
+	--lilo--navi-border-color: var(--primary-color-three);
+	--lilo--submenu-background-color: var(--primary-color-three);
+	--lilo--submenu-text-color: var(--primary-color-two);
+	--lilo--submenu-border-color: rgba(0, 0, 0, 0.5);
+	--lilo--featured-background-color: var(--primary-color-two);
+	--lilo--featured-text-color: var(--primary-color-three);
+	--lilo--featured-hover-color: rgba(255, 255, 255, 0.6);
+	--lilo--featured-border-color: var(--primary-color-one);
+	--lilo--title-color: var(--primary-color-two);
+	--lilo--title-hover-color: var(--primary-color-one);
+	--lilo--post-meta-background-color: var(--secondary-color-two);
+	--lilo--content-border-color: rgba(0, 0, 0, 0.0);
+	--lilo--widget-title-background-color: var(--primary-color-two);
+	--lilo--widget-title-text-color: var(--primary-color-three);
+	--lilo--widget-border-color: rgba(0, 0, 0, 0.1);
+	--lilo--footer-background-color: var(--primary-color-two);
+	--lilo--footer-overlay-color: rgba(255, 255, 255, 0.05);
+	--lilo--footer-text-color: rgba(255, 255, 255, 0.6);
+	--lilo--footer-link-color: var(--primary-color-three);
+	--lilo--footer-link-hover-color: rgba(255, 255, 255, 0.6);
+	--lilo--footer-border-color: rgba(255, 255, 255, 0.1);
+
+	/* Transition */
+	--lilo--transition: transform 0.3s ease;
+	--lilo--transition-fast: all 0.15s ease;
+
+	/* Typography */
+	--lilo--text-font: "Ubuntu", arial, helvetica, sans-serif;
+	--lilo--title-font: "Francois One", arial, helvetica, sans-serif;
+	--lilo--navi-font: "Francois One", arial, helvetica, sans-serif;
+	--lilo--widget-title-font: "Ubuntu", arial, helvetica, sans-serif;
+	--lilo--title-font-weight-normal: normal;
+	--lilo--navi-font-weight-normal: normal;
+	--lilo--font-weight-400: 400;
+	--lilo--font-weight-700: 700;
+	--lilo--widget-title-font-weight: normal;
+	--lilo--title-text-transform: none;
+	--lilo--navi-text-transform: uppercase;
+	--lilo--widget-title-text-transform: uppercase;
+	--lilo--text-line-height: 1.75;
+	--lilo--title-line-height: 1.4;
+
+	/* Web Safe Font Stacks */
+	--lilo--web-safe-fonts-pre: "Courier 10 Pitch", Courier, monospace;
+	--lilo--web-safe-fonts-code: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+	--lilo--web-safe-fonts-blockquote: Georgia, "Times New Roman", Times, serif;
+
+	/* Font Sizes */
+	--lilo--font-size-xsmall: 0.875rem;
+	/* 14px */
+	--lilo--font-size-small: 0.9375rem;
+	/* 15px */
+	--lilo--font-size-medium: 1rem;
+	/* 16px */
+	--lilo--font-size-large: 1.125rem;
+	/* 18px */
+	--lilo--font-size-xlarge: 1.25rem;
+	/* 20px */
+	--lilo--font-size-xxlarge: 1.375rem;
+	/* 22px */
+	--lilo--font-size-xxxlarge: 1.5rem;
+	/* 24px */
+	--lilo--font-size-xxxxlarge: 1.75rem;
+	/* 28px */
+	--lilo--font-size-xxxxxlarge: 2rem;
+	/* 32px */
+	--lilo--font-size-xxxxxxlarge: 2.5rem;
+	/* 36px */
+
+
+	/* Responsive Breakpoints */
+	/* --lilo--breakpoint-small: 600px;  is mobile first strategy and start with medium breakpoint */
+	--lilo--breakpoint-medium: 960px;
+	--lilo--breakpoint-large: 1340px;
+	--lilo--breakpoint-xlarge: 3000px;
+	/* 4k */
+}
+
+/* style.css */
+
+/*--------------------------------------------------------------
+# 2. Controls
+--------------------------------------------------------------*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: black;
+    /*box-shadow: 0 0 4rem rgb(255, 255, 255);*/
+	border: 1px solid white;
+    padding: 1rem;
+    width: 600px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+    text-align: center;
+}
+
+#question-header {
+    font-family: var(--lilo--title-font);
+    font-size: var(--lilo--font-size-xxxxlarge);
+	color: white;
+	text-align: left;
+    margin-bottom: 3rem;
+	min-height: calc(24px * 1.5 * 3);
+}
+
+
+/*--------------------------------------------------------------
+# 2. Controls
+--------------------------------------------------------------*/
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question-meta {
+    font-size: var(--lilo--font-size-medium);
+    color: var(--secondary-color-one);
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+}
+
+.btn {
+    color: var(--lilo--button-text-color);
+	font-size: var(--lilo--font-size-medium);
+	font-family: var(--lilo--text-font);
+	line-height: var(--lilo--text-line-height);
+    background-color: var(--lilo--button-color);
+    border: none;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    cursor: pointer;
+}
+
+/* Hover effect 
+.btn:hover {
+    background-color: var(--lilo--button-hover-color);
+    transform: scale(1.1);
+	transition: var(--lilo--transition);
+}
+*/
+
+.hide {
+    display: none;
+}
+
+.correct {
+    background-color: #408000 !important;
+}
+
+.wrong {
+    background-color: #cc3333 !important;
+}
