@@ -2,8 +2,15 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # 1. Gesundheitsversorgung
-# 2. Demokratie
-# 3. Tiefengeothermie
+# 2. Verkehrswende
+# 3. Wohnungsbau
+# 4. Umwelt
+# 5. Mitbestimmung & Transparenz
+# 6. Bildung
+# 7. Jugend
+# 8. Feminismus
+# 9. Tiefengeothermie
+# 10. Wirtschaft & Finanzen
 --------------------------------------------------------------*/
 
 const quizDataLiLO = [
@@ -56,42 +63,16 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     /*--------------------------------------------------------------
-    # 2. Demokratie
+    # 2. Verkehrswende
     --------------------------------------------------------------*/
-    {
-        "question": "Was fordert die LiLO für zukünftige Landratswahlen?",
-        "options": ["Direktwahl durch Bevölkerung", "Wahl durch Bürgermeister", "Ernennung durch Kreistag", "Geheime Absprachen"],
-        "correctAnswerIndex": 0
-    },
-    /*--------------------------------------------------------------
-    # 3. Tiefengeothermie
-    --------------------------------------------------------------*/
-    {
-        "question": "Neben Öl und Gas soll in Neuried Altenheim auch welches begehrte Material gefördert werden?",
-        "options": ["Gold", "Silber", "Kupfer", "Lithium"],
-        "correctAnswerIndex": 3
-    },
-    /*--------------------------------------------------------------
-    # 11. Sonstiges
-    --------------------------------------------------------------*/
-    {
-        "question": "Welche Steuer könnte durch Abschreibungen und Bilanztricks gesenkt werden?",
-        "options": ["Einkommensteuer", "Mehrwertsteuer", "Gewerbesteuer", "Umsatzsteuer"],
-        "correctAnswerIndex": 2
-    },
-    {
-        "question": "Was ist das Hauptziel der LiLO?",
-        "options": ["Umweltschutz", "Gesundheitsversorgung", "Bildung", "Wirtschaftsförderung"],
-        "correctAnswerIndex": 0
-    },
     {
         "question": "Welche Verkehrswende-Maßnahme konnte die LiLO bereits erfolgreich durch Protestaktionen erreichen?",
-        "options": ["30 € Monatsticket", "Mehr Seniorenparkplaetze", "Verbot von Privatautos in Innenstädten", "Verdoppelung der Parkgebühren"],
+        "options": ["30 € Monatsticket", "Mehr Seniorenparkplätze", "Verbot von Privatautos in Innenstädten", "Verdoppelung der Parkgebühren"],
         "correctAnswerIndex": 0
     },
     {
         "question": "Welches Menschenrecht nennt die LiLO in Bezug auf Mobilität?",
-        "options": ["kostenlose Nutzung von Fahrraedern", "Gratis-Parkplätze", "barrierefreie Straßen", "Recht auf Mobilität"],
+        "options": ["kostenlose Fahrräder", "Gratis-Parkplätze", "barrierefreie Straßen", "Recht auf Mobilität"],
         "correctAnswerIndex": 3
     },
     {
@@ -100,25 +81,24 @@ const quizDataLiLO = [
         "correctAnswerIndex": 2
     },
     {
-        "question": "Was soll durch die Schaffung einer kreiseigenen Dachgesellschaft für Wohnungsbau erreicht werden?",
-        "options": ["Luxuswohnungen", "bezahlbarer Wohnraum", "Wohngemeinschaften", "Gewerbeflächen"],
+        "question": "Welche Taktfrequenz strebt die LiLO für den öffentlichen Nahverkehr in der Ortenau an?",
+        "options": ["Stundentakt", "Halbstundentakt", "Zwei-Stunden-Takt", "Viertelstundentakt"],
         "correctAnswerIndex": 1
     },
-    /*--------------------------------------------------------------*/
     {
         "question": "Welche Maßnahme plant die Ortenau zur Verbesserung des Nahverkehrs?",
         "options": ["Mehr Buslinien", "Fahrradverleihsystem", "Neue Zugstrecken", "Carsharing"],
         "correctAnswerIndex": 2
     },
     {
-        "question": "Welche Stadt ist bekannt für ihre Bemühungen im Klimaschutz in der Ortenau?",
-        "options": ["Offenburg", "Kehl", "Oberkirch", "Gengenbach"],
-        "correctAnswerIndex": 1
+        "question": "Welche Stadt in der Ortenau hat die meisten Verkehrsprobleme?",
+        "options": ["Offenburg", "Lahr", "Kehl", "Achern"],
+        "correctAnswerIndex": 0
     },
     {
-        "question": "Welche Art von Energie wird in der Ortenau stark gefördert?",
-        "options": ["Windenergie", "Solarenergie", "Kernenergie", "Fossile Brennstoffe"],
-        "correctAnswerIndex": 1
+        "question": "Welche Maßnahme zur Verkehrsberuhigung ist in der Ortenau umstritten?",
+        "options": ["Tempo-30-Zonen", "Verkehrsberuhigte Bereiche", "Einbahnstraßen", "Fahrradstraßen"],
+        "correctAnswerIndex": 3
     },
     {
         "question": "Welches Projekt zur Förderung des Radverkehrs wurde kürzlich gestartet?",
@@ -182,9 +162,76 @@ const quizDataLiLO = [
         "correctAnswerIndex": 0
     },
     {
+        "question": "Welche Stadt in der Ortenau hat die schlechteste Luftqualität?",
+        "options": ["Offenburg", "Lahr", "Kehl", "Oberkirch"],
+        "correctAnswerIndex": 1
+    },
+    {
         "question": "Welche Stadt hat ein neues Klimaschutzkonzept entwickelt?",
         "options": ["Lahr", "Offenburg", "Achern", "Kehl"],
         "correctAnswerIndex": 3
+    },
+    {
+        "question": "Welche Stadt hat die meisten Parks und Grünflächen in der Ortenau?",
+        "options": ["Lahr", "Offenburg", "Kehl", "Oberkirch"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Stadt ist bekannt für ihre Bemühungen im Klimaschutz in der Ortenau?",
+        "options": ["Offenburg", "Kehl", "Oberkirch", "Gengenbach"],
+        "correctAnswerIndex": 1
+    },
+    {
+        "question": "Welche Maßnahmen werden zur Förderung der Elektromobilität ergriffen?",
+        "options": ["Ladestationen", "Subventionen für Elektroautos", "E-Bike-Programme", "Elektrobusse"],
+        "correctAnswerIndex": 0
+    },
+    /*--------------------------------------------------------------
+    # 5. Mitbestimmung & Transparenz
+    --------------------------------------------------------------*/
+    {
+        "question": "Was fordert die LiLO für zukünftige Landratswahlen?",
+        "options": ["Direktwahl durch Bevölkerung", "Wahl durch Bürgermeister", "Ernennung durch Kreistag", "Geheime Absprachen"],
+        "correctAnswerIndex": 0
+    },
+    /*--------------------------------------------------------------
+    # 6. Bildung
+    --------------------------------------------------------------*/
+    /*--------------------------------------------------------------
+    # 7. Jugend
+    --------------------------------------------------------------*/
+    /*--------------------------------------------------------------
+    # 8. Feminismus
+    --------------------------------------------------------------*/    
+    /*--------------------------------------------------------------
+    # 9. Tiefengeothermie
+    --------------------------------------------------------------*/
+    {
+        "question": "Neben Öl und Gas soll in Neuried Altenheim auch welches begehrte Material gefördert werden?",
+        "options": ["Gold", "Silber", "Kupfer", "Lithium"],
+        "correctAnswerIndex": 3
+    },
+    /*--------------------------------------------------------------
+    # 10. Wirtschaft & Finanzen
+    --------------------------------------------------------------*/
+    {
+        "question": "Welche Steuer könnte durch Abschreibungen und Bilanztricks gesenkt werden?",
+        "options": ["Einkommensteuer", "Mehrwertsteuer", "Gewerbesteuer", "Umsatzsteuer"],
+        "correctAnswerIndex": 2
+    },
+    /*--------------------------------------------------------------
+    # 11. Sonstiges
+    --------------------------------------------------------------*/
+    {
+        "question": "Was ist das Hauptziel der LiLO?",
+        "options": ["Umweltschutz", "Gesundheitsversorgung", "Bildung", "Wirtschaftsförderung"],
+        "correctAnswerIndex": 1
+    },
+    /*--------------------------------------------------------------*/
+    {
+        "question": "Wie unterstützt die Ortenau Familien?",
+        "options": ["Kita-Ausbau", "Familienzentren", "Ferienprogramme", "Elterngeld"],
+        "correctAnswerIndex": 0
     },
     {
         "question": "Welche Initiative fördert die regionale Wirtschaft in der Ortenau?",
@@ -246,14 +293,55 @@ const quizDataLiLO = [
         "options": ["Hohe Kosten", "Widerstand der Bürger", "Mangelnde Technologie", "Langsame Umsetzung"],
         "correctAnswerIndex": 1
     },
-    {
-        "question": "Was ist das größte Problem im Bereich Wohnungsbau in der Ortenau?",
-        "options": ["Wohnungsknappheit", "Hohe Mieten", "Schlechte Bauqualität", "Lange Bauzeiten"],
-        "correctAnswerIndex": 0
-    },
-    {
-        "question": "Welche Maßnahme zur Verkehrsberuhigung ist in der Ortenau umstritten?",
-        "options": ["Tempo-30-Zonen", "Verkehrsberuhigte Bereiche", "Einbahnstraßen", "Fahrradstraßen"],
-        "correctAnswerIndex": 3
-    },
 ];
+
+// LiLOSummaryPrintText
+function getLiLOSummaryPrintText(correctAnswers, shuffledQuestions) {
+    let summaryText;
+    let germanCharSet = '\x1B\x74\x00';
+    let bigFont = '\x1B\x21\x30';
+    let smallFont = '\x1B\x21\x00';
+    let doubleHeight = '\x1b\x21\x11';
+    let normalHeight = '\x1b\x21\x00';
+    let left = '\x1B\x61\x00';
+    let center = '\x1B\x61\x01';
+    let right = '\x1B\x61\x02';
+    let bolt = '\x1B\x45\x01';
+    let noBolt = '\x1B\x45\x00';
+    let underlined = '\x1B\x2D\x01';
+    let noUnderlined = '\x1B\x2D\x00';
+    let inverted = '\x1D\x42\x01';
+    let noInverted = '\x1D\x42\x00';
+
+    summaryText = germanCharSet;
+    summaryText += bigFont + doubleHeight + center;
+    summaryText += 'LILO - Liste Lebenswerte Ortenau\n';
+    summaryText += smallFont + normalHeight + inverted;
+    summaryText += '\n';
+    summaryText += '  Zusammenfassung  \n';
+    summaryText += left + noInverted;
+    summaryText += '\n'
+    summaryText += 'Richtige Antworten: ' + correctAnswers + ' von ' + shuffledQuestions.length + '\n';
+    summaryText += 'Du bist der Beste!\n';
+    summaryText += 'Vielen Dank für deine Teilnahme\n';
+    summaryText += '\n';
+    summaryText += 'Wenn du mehr erfahren möchtest,\n';
+    summaryText += 'besuche uns auf\n';
+    summaryText += 'www.Liste-Lebenswerte-Ortenau.de\n';
+    summaryText += '\n';
+    summaryText += underlined + center;
+    summaryText += 'Spenden\n';
+    summaryText += left + noUnderlined;
+    summaryText += 'Sparkasse Offenburg\n';
+    summaryText += 'IBAN:\n';
+    summaryText += 'DE75 6645 0050 0004 9895 57\n';
+    summaryText += 'BIC:\n';
+    summaryText += 'SOLADES1OFG\n';
+    summaryText += '\n';
+    summaryText += 'Oder per PayPal\n';
+    summaryText += 'Vielen Dank für deine\n';
+    summaryText += 'Unterstützung\n';
+    summaryText += '\n\n\n';
+
+    return summaryText;
+};
