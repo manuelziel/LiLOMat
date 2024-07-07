@@ -42,7 +42,7 @@
     {
         "id": "54953672419a803b",
         "type": "websocket-listener",
-        "path": "/bmp",
+        "path": "/command",
         "wholemsg": "false"
     },
     {
@@ -51,7 +51,7 @@
         "z": "f73c0feb804618e7",
         "name": "UART",
         "serial": "5963a36a986c2a11",
-        "x": 1030,
+        "x": 910,
         "y": 360,
         "wires": []
     },
@@ -97,11 +97,13 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1140,
-        "y": 460,
+        "x": 1020,
+        "y": 620,
         "wires": [
             [],
-            [],
+            [
+                "325aa27e0713317b"
+            ],
             []
         ]
     },
@@ -109,10 +111,10 @@
         "id": "965176befcff6e06",
         "type": "comment",
         "z": "f73c0feb804618e7",
-        "name": "Post Answer Tone from Quiz",
+        "name": "Tone Message from Quiz",
         "info": "",
-        "x": 340,
-        "y": 640,
+        "x": 330,
+        "y": 40,
         "wires": []
     },
     {
@@ -128,7 +130,7 @@
         "finalize": "",
         "libs": [],
         "x": 520,
-        "y": 700,
+        "y": 100,
         "wires": [
             [
                 "a955e9dbbc31add4"
@@ -156,8 +158,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1180,
-        "y": 680,
+        "x": 1060,
+        "y": 80,
         "wires": [
             [],
             [],
@@ -176,8 +178,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1180,
-        "y": 740,
+        "x": 1060,
+        "y": 140,
         "wires": [
             [],
             [],
@@ -196,8 +198,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1170,
-        "y": 860,
+        "x": 1050,
+        "y": 260,
         "wires": [
             [],
             [],
@@ -216,8 +218,8 @@
         "winHide": false,
         "oldrc": false,
         "name": "",
-        "x": 1170,
-        "y": 800,
+        "x": 1050,
+        "y": 200,
         "wires": [
             [],
             [],
@@ -232,7 +234,7 @@
         "server": "053e4133366f87b1",
         "client": "",
         "x": 280,
-        "y": 700,
+        "y": 100,
         "wires": [
             [
                 "1b0f9c281732a4f5"
@@ -255,15 +257,49 @@
         ]
     },
     {
-        "id": "59e5d7ba2976df6d",
+        "id": "998b9025bde24e57",
+        "type": "comment",
+        "z": "f73c0feb804618e7",
+        "name": "Command Message from Quiz",
+        "info": "",
+        "x": 340,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "f679e97a9a41215b",
         "type": "websocket in",
         "z": "f73c0feb804618e7",
         "name": "",
         "server": "54953672419a803b",
         "client": "",
-        "x": 280,
-        "y": 420,
+        "x": 300,
+        "y": 620,
         "wires": [
+            [
+                "124f84c8b47f42f9"
+            ]
+        ]
+    },
+    {
+        "id": "325aa27e0713317b",
+        "type": "exec",
+        "z": "f73c0feb804618e7",
+        "command": "chmod +x /media/lilo/Stick/lilomat/script/shutdown.sh",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 1060,
+        "y": 720,
+        "wires": [
+            [],
+            [
+                "124f84c8b47f42f9"
+            ],
             []
         ]
     }

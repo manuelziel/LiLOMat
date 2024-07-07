@@ -19,35 +19,7 @@
 	/* must be 50%*/
 	--secondary-color-two: #E6E6E6;
 	/* must be light 80% */
-	--accent-color: #CC3333;
-}
-
-body.lhl {
-	/* LHL colors */
-	--primary-color-one: #408000;
-	--primary-color-two: #333333;
-	/* must be dark 20%*/
-	--primary-color-three: #ffffff;
-	/* must be white */
-	--secondary-color-one: #808080;
-	/* must be 50% */
-	--secondary-color-two: #E6E6E6;
-	/* must be light 80% */
 	--accent-color: #408000;
-}
-
-body.manu {
-	/* Manu colors */
-	--primary-color-one: #3771c8;
-	--primary-color-two: #060E1A;
-	/* must be dark 20%*/
-	--primary-color-three: #ffffff;
-	/* must be white */
-	--secondary-color-one: #808080;
-	/* must be 50% */
-	--secondary-color-two: #E6E6E6;
-	/* must be light 80% */
-	--accent-color: #3771c8;
 }
 
 :root {
@@ -237,29 +209,35 @@ body {
 	font-size: var(--lilo--font-size-medium);
 	font-family: var(--lilo--text-font);
 	line-height: var(--lilo--text-line-height);
-    background-color: var(--lilo--button-color);
     border: none;
-    padding: 0.5rem;
-    margin: 0.5rem;
+    padding: 0.5rem 2rem 0.5rem 2rem;
+    margin: 0.5rem 2rem 0.5rem 2rem;
     cursor: pointer;
 }
 
-/* Hover effect 
-.btn:hover {
-    background-color: var(--lilo--button-hover-color);
-    transform: scale(1.1);
-	transition: var(--lilo--transition);
+#answer-buttons .btn {
+	background-color: var(--primary-color-two);
+	border: 1px solid white;
+	border-color: white;
 }
-*/
+
+#first-btn,
+#second-btn,
+#third-btn {
+	background-color: black;
+	border: 1px solid white;
+	border-color: white;
+	width: 100%;
+}
 
 .hide {
     display: none;
 }
 
 .correct {
-    background-color: #408000 !important;
+    background-color: var(--accent-color) !important;
 }
 
 .wrong {
-    background-color: #cc3333 !important;
+    background-color: var(--primary-color-one) !important;
 }

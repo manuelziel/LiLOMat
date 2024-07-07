@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+time.sleep(duration)
+
 # GPIO-Setup
 GPIO.setmode(GPIO.BCM)
 GPIO_PIN = 2

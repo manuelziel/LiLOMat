@@ -1,17 +1,64 @@
+/*  Description: Quiz game with WebSocket communication
+*   Author: Manuel Ziel
+*   Last Update: 2024/07/06
+*   Version: 0.0.1 alpha02
+*   License: MIT
+*/
+
+// Quiz strings data
 const stringText = {
-    headerStartQuiz: "LiLO Ortenau Quiz",
-    buttonNewLiLOQuiz: "LiLO (kurz)",
-    buttonNewLHLQuiz: "LHL (kurz)",
-    buttonNewFunnyQuiz: "Alles",
-    metaStartQuiz: "Wähle ein Quiz aus",
+
+    // Header
+    headerStartQuiz: "LiLO-Politik Quiz",
+
+    // Buttons
+    buttonNewLiLOQuiz: "LiLO",
+    buttonNewLHLQuiz: "LHL",
+    buttonNewMasterQuiz: "Lokaler Meister",
     buttonQuit: "Beenden",
-    buttonSkip: "Überspringen",
+    buttonSkip: "Überspringen ➔",
+
+    // Meta
+    metaStartQuiz: "Wähle dein Quiz aus",
+
+    // Console messages
     consoleQuizStarted: "Quiz gestartet",
     consoleQuizEnded: "Quiz beendet",
     consoleQuizSkipped: "Frage übersprungen",
     consoleCorrectAnswer: "Richtig",
     consoleWrongAnswer: "Falsch",
 }
+
+// WebSocket Objects
+const WEB_SOCKET = Object.freeze({
+
+    // Tone
+    //toneURLLocalhost: "ws://localhost:1880/tone",
+    toneURLLocalhost: "ws://lilo:1880/tone",
+    tonePush: "push",
+    toneCorrectAnswer: "correct answer",
+    toneWrongAnswer: "wrong answer",
+    toneEnd: "end",
+    tone: "tone",
+
+    // Print
+    //printURLLocalhost: "ws://localhost:1880/print",
+    printURLLocalhost: "ws://lilo:1880/print",
+    print: "print",
+
+    // Commands
+    //commandURLLocalhost: "ws://localhost:1880/command",
+    commandURLLocalhost: "ws://lilo:1880/command",
+    commandPowerOff: "poweroff",
+});
+
+// Quiz Object types data
+const QUIZ_TYPES = Object.freeze({
+
+    quizTypeLiLO: "LiLO",
+    quizTypeLHL: "LHL",
+    quizTypeMaster: "Master",
+});
 
 // Get Elements from the DOM
 const questionElement = document.getElementById('question-header');
@@ -21,17 +68,26 @@ const firstButton = document.getElementById('first-btn');
 const secondButton = document.getElementById('second-btn');
 const thirdButton = document.getElementById('third-btn');
 
+// Quiz variables data
 let quiz;
-let socketTone;
-let socketPrint;
+let webSocketTone;
+let webSocketPrint;
+let webSocketCommand;
+let countdownTime = 25;
+const maxLiLOQuestions = 16;
+const maxLHLQuestions = 16;
+const maxMasterQuestions = 32;
+let questionElementCounter = 0;
+let countdownTimerQuestionElement = 0;
 
 // Initialize the quiz
 function initQuiz() {
+    quiz = null;
     questionElement.textContent = stringText.headerStartQuiz;
     questionMeta.textContent = stringText.metaStartQuiz;
     firstButton.textContent = stringText.buttonNewLiLOQuiz;
     secondButton.textContent = stringText.buttonNewLHLQuiz;
-    thirdButton.textContent = stringText.buttonNewFunnyQuiz;
+    thirdButton.textContent = stringText.buttonNewMasterQuiz;
     firstButton.classList.remove('hide');
     secondButton.classList.remove('hide');
     thirdButton.classList.remove('hide');
@@ -39,54 +95,175 @@ function initQuiz() {
 }
 initQuiz();
 
-// Envent listeners start button
-firstButton.addEventListener('click', () => {
+// Initialize the WebSocket connections
+const initWebSocket = () => {
+
+    console.log('Initialize WebSocket connections');
+
+    if (!webSocketTone) {
+        webSocketTone = new WebSocketConnection(WEB_SOCKET.toneURLLocalhost);
+        webSocketTone.openWebSocket();
+    }
+
+    if (!webSocketPrint) {
+        webSocketPrint = new WebSocketConnection(WEB_SOCKET.printURLLocalhost);
+        webSocketPrint.openWebSocket();
+    }
+
+    if (!webSocketCommand) {
+        webSocketCommand = new WebSocketConnection(WEB_SOCKET.commandURLLocalhost);
+        webSocketCommand.openWebSocket();
+    }
+}
+initWebSocket();
+
+
+// Check and reopen WebSocket connections
+const checkAndReopenWebSocket = () => {
+
+    //console.log('Check WebSocked connections...');
+    if (webSocketTone && !webSocketTone.isConnected()) {
+        webSocketTone.reopenWebSocket();
+    }
+
+    if (webSocketPrint && !webSocketPrint.isConnected()) {
+        webSocketPrint.reopenWebSocket();
+    }
+
+    if (webSocketCommand && !webSocketCommand.isConnected()) {
+        webSocketCommand.reopenWebSocket();
+    }
+}
+
+// Check and reopen WebSocket connections
+setInterval(checkAndReopenWebSocket, 10000);
+
+// Handle Elements
+function initEventListeners() {
+    questionElement.addEventListener('click', handleQuestionElement);
+    firstButton.addEventListener('click', handleFirstButton);
+    secondButton.addEventListener('click', handleSecondButton);
+    thirdButton.addEventListener('click', handleThirdButton);
+}
+initEventListeners();
+
+// Handle question element
+function handleQuestionElement() {
+
+    questionElementCounter++;
+
+    if (questionElementCounter >= 10) {
+
+        webSocketCommand.sendMessage('poweroff');
+        questionElementCounter = 0;
+        clearTimeout(countdownTimerQuestionElement);
+
+    } else {
+
+        clearTimeout(countdownTimerQuestionElement)
+        countdownTimerQuestionElement = setTimeout(() => {
+            questionElementCounter = 0;
+        }, 20000);
+    }
+}
+
+// Handle first button
+function handleFirstButton() {
+
     if (firstButton.textContent === stringText.buttonNewLiLOQuiz) {
-        quiz = new Quiz(quizDataLiLO, stringText.buttonQuit);
-        quiz.webSocketTone('push');
+
+        if (quiz) {
+            quiz.endQuiz();
+        }
+
+        quiz = new Quiz(quizDataLiLO, QUIZ_TYPES.quizTypeLiLO, countdownTime, webSocketTone, webSocketPrint);
+        webSocketTone.sendMessage(WEB_SOCKET.tonePush);
         quiz.startQuiz();
+
     } else if (firstButton.textContent === stringText.buttonQuit) {
-        quiz.webSocketTone('push');
-        quiz.closeWebSocket();
+
+        webSocketTone.sendMessage(WEB_SOCKET.tonePush);
         quiz.endQuiz();
     }
-});
+}
 
-secondButton.addEventListener('click', () => {
+// Handle second button
+function handleSecondButton() {
+
     if (secondButton.textContent === stringText.buttonSkip) {
-        quiz.httpPostTone('push');
+
+        webSocketTone.sendMessage(WEB_SOCKET.tonePush);
+        quiz.countdownOverrun = false;
         quiz.setNextQuestion();
+
     } else if (secondButton.textContent === stringText.buttonNewLHLQuiz) {
-        quiz = new Quiz(quizDataLHL, stringText.buttonNewLHLQuiz);
-        quiz.webSocketTone('push');
+
+        if (quiz) {
+            quiz.endQuiz();
+        }
+
+        quiz = new Quiz(quizDataLHL, QUIZ_TYPES.quizTypeLHL, countdownTime, webSocketTone, webSocketPrint);
+        webSocketTone.sendMessage(WEB_SOCKET.tonePush);
         quiz.startQuiz();
     }
-});
+}
 
-thirdButton.addEventListener('click', () => {
-    quiz = new Quiz(quizDataManu, stringText.buttonNewFunnyQuiz);
-    quiz.webSocketTone('push');
+// Handle third button
+function handleThirdButton() {
+
+    if (quiz) {
+        quiz.endQuiz();
+    }
+
+    quiz = new Quiz(quizDataMaster, QUIZ_TYPES.quizTypeMaster, countdownTime, webSocketTone, webSocketPrint);
+    webSocketTone.sendMessage(WEB_SOCKET.tonePush);
     quiz.startQuiz();
-});
+}
 
 // Quiz class
 class Quiz {
-    constructor(questions, quizType) {
+
+    constructor(questions, quizType, countdownTime, webSocketTone, webSocketPrint) {
         this.questions = questions;
         this.quizType = quizType;
         this.shuffledQuestions = [];
         this.currentQuestionIndex = 0;
         this.correctAnswers = 0;
         this.answersSummary = [];
-        this.socketTone = socketTone;
-        this.socketPrint = socketPrint;
+        this.countdownTimer = null;
+        this.countdownTime = countdownTime;
+        this.countdownOverrun = false;
+        this.webSocketTone = webSocketTone;
+        this.webSocketPrint = webSocketPrint;
     }
 
+    // Start the quiz
     startQuiz() {
-        this.shuffledQuestions = this.shuffle(this.questions);
+
+        switch (this.quizType) {
+
+            case QUIZ_TYPES.quizTypeLiLO:
+                this.shuffledQuestions = this.shuffle(this.questions, maxLiLOQuestions);
+                break;
+
+            case QUIZ_TYPES.quizTypeLHL:
+                this.shuffledQuestions = this.shuffle(this.questions, maxLHLQuestions);
+                break;
+
+            case QUIZ_TYPES.quizTypeMaster:
+                this.shuffledQuestions = this.shuffle(this.questions, maxMasterQuestions);
+                break;
+
+            default:
+                break;
+        }
+
+        //this.shuffledQuestions = this.shuffle(this.questions);
         this.currentQuestionIndex = 0;
         this.correctAnswers = 0;
         this.answersSummary = [];
+        this.countdownOverrun = false;
+        this.countdownTimer = null;
 
         console.log(stringText.consoleQuizStarted);
         this.setNextQuestion();
@@ -98,41 +275,84 @@ class Quiz {
         thirdButton.classList.add('hide');
     }
 
+    // Set the next question
     setNextQuestion() {
+
         this.resetState();
+
         if (this.currentQuestionIndex < this.shuffledQuestions.length) {
             this.showQuestion(this.shuffledQuestions[this.currentQuestionIndex], this.currentQuestionIndex + 1, this.shuffledQuestions.length);
+
         } else {
             this.showResult();
         }
+
         this.currentQuestionIndex++;
     }
 
+    // Show question and answers
     showQuestion(question, questionNumber, totalQuestions) {
+
+        let countdown = countdownTime;
+
         questionElement.textContent = question.question;
-        questionMeta.textContent = `Frage ${questionNumber} von ${totalQuestions}`;
-        console.log(`Frage ${questionNumber} von ${totalQuestions}: ${question.question}`);
+        questionMeta.textContent = `Frage ${questionNumber} / ${totalQuestions} du hast noch ${countdown} Sekunden`;
+
+        console.log(`Frage ${questionNumber} / ${totalQuestions}: ${question.question}`);
         console.log('Was ist die richtige Antwort? ' + question.options.join(', '));
+
         question.options.forEach((option, index) => {
+
             const button = document.createElement('button');
             button.textContent = option;
             button.classList.add('btn');
-            button.addEventListener('click', () => this.selectAnswer(index, question.correctAnswerIndex, question.question, option, question.options[question.correctAnswerIndex]));
+            button.addEventListener('click', () => {
+                this.countdownOverrun = false;
+                clearInterval(this.countdownTimer);
+                this.selectAnswer(index, question.correctAnswerIndex, question.question, option, question.options[question.correctAnswerIndex]);
+            });
+
             answerButtons.appendChild(button);
         });
+
+        this.startCountdown(countdown, question, questionNumber, totalQuestions);
     }
 
+    // Start the countdown
+    startCountdown(countdown, question, questionNumber, totalQuestions) {
+        this.countdownTimer = setInterval(() => {
+            countdown--;
+            questionMeta.textContent = `Frage ${questionNumber} / ${totalQuestions} du hast noch ${countdown} Sekunden`;
+
+            if (countdown <= 0 && !this.countdownOverrun) {
+                this.countdownOverrun = true;
+                clearInterval(this.countdownTimer);
+                this.selectAnswer(-1, question.correctAnswerIndex, question.question, 'Zeit abgelaufen', question.options[question.correctAnswerIndex]);
+            } else if (countdown <= 0 && this.countdownOverrun) {
+                this.endQuiz();
+            }
+        }, 1000);
+    }
+
+    // Reset the state of the quiz
     resetState() {
+
+        clearInterval(this.countdownTimer);
         this.clearStatusClass(document.body);
+
         while (answerButtons.firstChild) {
+
             answerButtons.removeChild(answerButtons.firstChild);
         }
     }
 
+    // Select the answer
     selectAnswer(index, correctIndex, questionText, selectedOption, correctOption) {
+
         const correct = index === correctIndex;
 
         this.answersSummary.push({
+
             question: questionText,
             selectedOption: selectedOption,
             correctOption: correctOption,
@@ -140,192 +360,104 @@ class Quiz {
         });
 
         Array.from(answerButtons.children).forEach(button => {
+
             this.setStatusClass(button, button.textContent === correctOption ? 'correct' : 'wrong');
         });
 
         if (correct) {
+
             this.correctAnswers++;
             this.setStatusClass(document.body, 'correct');
             console.log(stringText.consoleCorrectAnswer);
+            this.webSocketTone.sendMessage(WEB_SOCKET.toneCorrectAnswer);
 
-            this.webSocketTone('correct answer');
         } else {
             this.setStatusClass(document.body, 'wrong');
             console.log(stringText.consoleWrongAnswer);
-
-            this.webSocketTone('wrong answer');
+            this.webSocketTone.sendMessage(WEB_SOCKET.toneWrongAnswer);
         }
 
-        setTimeout(() => {
+        this.countdownTimer = setTimeout(() => {
             this.setNextQuestion();
-        }, 2000);
+        }, 4000);
     }
 
+    // Show the result
     showResult() {
+        this.countdownOverrun = false;
+        clearInterval(this.countdownTimer);
+
         answerButtons.classList.add('hide');
         secondButton.classList.add('hide');
-        questionElement.textContent = 'Quiz beendet';
-        questionMeta.textContent = `Du hast ${this.correctAnswers} von ${this.shuffledQuestions.length} Fragen richtig beantwortet.`;
-        console.log(`Du hast ${this.correctAnswers} von ${this.shuffledQuestions.length} Fragen richtig beantwortet.`);
+        questionElement.textContent = 'Quiz beendet'; // TODO more text
+        questionMeta.textContent = `Du hast ${this.correctAnswers} / ${this.shuffledQuestions.length} Fragen richtig beantwortet.`;
+        console.log(`Du hast ${this.correctAnswers} / ${this.shuffledQuestions.length} Fragen richtig beantwortet.`);
         this.saveAndPrintSummary();
-        this.webSocketTone('end');
+        this.webSocketTone.sendMessage(WEB_SOCKET.toneEnd);
 
-        setTimeout(() => {
+        this.countdownTimer = setTimeout(() => {
             this.endQuiz();
-        }, 20000);
+        }, 10000);
     }
 
+    // End the quiz
     endQuiz() {
+        
         console.log(stringText.consoleQuizEnded);
         this.resetState();
         initQuiz();
     }
 
+    // Save and print the summary
     saveAndPrintSummary() {
         let summaryText;
-        let germanCharSet = '\x1B\x74\x00';
-        let bigFont = '\x1B\x21\x30';
-        let smallFont = '\x1B\x21\x00';
-        let doubleHeight = '\x1b\x21\x11';
-        let normalHeight = '\x1b\x21\x00';
-        let left = '\x1B\x61\x00';
-        let center = '\x1B\x61\x01';
-        let right = '\x1B\x61\x02';
-        let bolt = '\x1B\x45\x01';
-        let noBolt = '\x1B\x45\x00';
-        let underlined = '\x1B\x2D\x01';
-        let noUnderlined = '\x1B\x2D\x00';
-        let inverted = '\x1D\x42\x01';
-        let noInverted = '\x1D\x42\x00';
 
-        summaryText = germanCharSet;
-        summaryText += bigFont + doubleHeight + center;
-        summaryText += 'LILO\n';
-        summaryText += smallFont + normalHeight + inverted;
-        summaryText += '\n';
-        summaryText += '  Zusammenfassung  \n';
-        summaryText += left + noInverted;
-        summaryText += '\n'
-        summaryText += 'Richtige Antworten: ' + this.correctAnswers + ' von ' + this.shuffledQuestions.length + '\n';
-        summaryText += 'Du bist der Beste!\n';
-        summaryText += 'Vielen Dank für deine Teilnahme\n';
-        summaryText += '\n';
-        summaryText += 'Wenn du mehr erfahren\n';
-        summaryText += 'möchtest, besuche uns auf\n';
-        summaryText += 'www.Liste-Lebenswerte-Ortenau.de\n';
-        summaryText += '\n';
-        summaryText += underlined + center;
-        summaryText += 'Spenden\n';
-        summaryText += left + noUnderlined;
-        summaryText += 'Sparkasse Offenburg\n';
-        summaryText += 'IBAN:\n';
-        summaryText += 'DE48 6645 0050 0004 9817 01\n';
-        summaryText += 'BIC:\n';
-        summaryText += 'SOLADES1OFG\n';
-        summaryText += '\n';
-        summaryText += 'Oder per PayPal\n';
-        summaryText += 'Vielen Dank für deine\n';
-        summaryText += 'Unterstützung\n';
-        summaryText += '\n\n\n\n\n';
+        switch (quiz.quizType) {
 
-        /*
-        this.answersSummary.forEach((entry, index) => {
-            summaryText += `Frage ${index + 1}: ${entry.question}\n`;
-            summaryText += `Deine Antwort: ${entry.selectedOption}\n`;
-            summaryText += `Richtige Antwort: ${entry.correctOption}\n`;
-            summaryText += entry.correct ? 'Richtig\n\n' : 'Falsch\n\n';
-        });*/
+            case QUIZ_TYPES.quizTypeLiLO:
+                summaryText = getLiLOSummaryPrintText(this.correctAnswers, this.shuffledQuestions);
+                break;
 
-        this.webSocketPrint(summaryText);
+            case QUIZ_TYPES.quizTypeLHL:
+                summaryText = getLHLSummaryPrintText(this.correctAnswers, this.shuffledQuestions);
+                break;
+
+            case QUIZ_TYPES.quizTypeMaster:
+                summaryText = getMasterSummaryPrintText(this.correctAnswers, this.shuffledQuestions);
+                break;
+
+            default:
+                break;
+        }
+
+        this.webSocketPrint.sendMessage(summaryText);
     }
 
+    // Set the status class
     setStatusClass(element, status) {
+
         element.classList.add(status);
     }
 
+    // Clear the status class
     clearStatusClass(element) {
+
         element.classList.remove('correct');
         element.classList.remove('wrong');
     }
 
-    shuffle(array) {
-        return array.sort(() => Math.random() - 0.5);
-    }
+    // Fisher-Yates algorithm for shuffling
+    shuffle(array, maxQuestions) {
 
-    webSocketTone(message) {
-        try {
-            if (!this.socketTone || this.socketTone.readyState !== WebSocket.OPEN) {
-                this.socketTone = new WebSocket('ws://192.168.0.4:1880/tone');
-                // const socket = new WebSocket('ws://localhost:1880/tone');
+        //return array.sort(() => Math.random() - 0.5);
 
-                this.socketTone.onopen = (event) => {
-                    //console.log('Start WebSocket connection', event);
-                    this.socketTone.send(message);
-                };
-
-                /*this.socket.onmessage = function(event) {
-                    console.log('Recive Message from Server:', event.data);
-                };*/
-
-                this.socketTone.onerror = (error) => {
-                    console.error('WebSocket Error:', error);
-                };
-
-                /*this.socketTone.onclose = (event) => {
-                    //console.log('WebSocket connection closed:', event.code, event.reason);
-                };*/
-
-            } else {
-                this.socketTone.send(message);
-            }
-        } catch (error) {
-            console.error('WebSocket Error:', error);
+        for (let i = array.length - 1; i > 0; i--) {
+            // Pick a random index from 0 to i
+            let j = Math.floor(Math.random() * (i + 1));
+            // Swap elements array[i] and array[j]
+            [array[i], array[j]] = [array[j], array[i]];
         }
-    }
-
-    webSocketPrint(message) {
-        try {
-            if (!this.socketPrint || this.socketPrint.readyState !== WebSocket.OPEN) {
-                this.socketPrint = new WebSocket('ws://192.168.0.4:1880/print');
-                // const socket = new WebSocket('ws://localhost:1880/print');
-
-                this.socketPrint.onopen = (event) => {
-                    //console.log('Start WebSocket connection', event);
-                    this.socketPrint.send(message);
-                };
-
-                /*this.socket.onmessage = function(event) {
-                    console.log('Recive Message from Server:', event.data);
-                };*/
-
-                this.socketPrint.onerror = (error) => {
-                    console.error('WebSocket Error:', error);
-                };
-
-                /*this.socketPrint.onclose = (event) => {
-                    //console.log('WebSocket connection closed:', event.code, event.reason);
-                };*/
-
-            } else {
-                this.socketPrint.send(message);
-            }
-        } catch (error) {
-            console.error('WebSocket Error:', error);
-        }
-    }
-
-    closeWebSocket() {
-        try {
-            if (this.socketTone && this.socketTone.readyState === WebSocket.OPEN) {
-                this.socketTone.close();
-            }
-
-            if (this.socketPrint && this.socketPrint.readyState === WebSocket.OPEN) {
-                this.socketPrint.close();
-            }
-
-        } catch (error) {
-            console.error('WebSocket Error:', error);
-        }
+        //return array;
+        return array.slice(0, maxQuestions);
     }
 };
