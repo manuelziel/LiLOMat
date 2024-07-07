@@ -1,3 +1,18 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# 1. Gesundheitsversorgung
+# 2. Verkehrswende
+# 3. Wohnungsbau
+# 4. Umwelt
+# 5. Mitbestimmung & Transparenz
+# 6. Bildung
+# 7. Jugend
+# 8. Feminismus
+# 9. Tiefengeothermie
+# 10. Wirtschaft & Finanzen
+--------------------------------------------------------------*/
+
 const quizDataLHL = [
     {
         "question": "Was ist das Hauptziel der Liste Lebenswerte Ortenau?",
