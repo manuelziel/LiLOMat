@@ -4,4 +4,4 @@ xset s off
 xset -dpms
 xset s noblank
 unclutter -idle 0.1 -root &
-chromium-browser --noerrdialogs --disable-infobars --kiosk file:///media/lilo/Stick/lilomat/index.html
+chromium-browser --noerrdialogs --disable-infobars --kiosk file:///home/lilo/lilomat/index.html

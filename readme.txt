@@ -21,7 +21,7 @@ print quiz summaries.
 1. Show Drives: sudo lsblk
 2. Compress image sudo dd if=/dev/sdX bs=4M | gzip > ./backup.img.gz (Current dir)
 3. Write Image: sudo dd if=/dir/dir/backup.img.gz bs=4M | gzip -dc | sudo dd of=/dev/sdY bs=4M
-4. Copy with ssh: sudo scp -r /home/user/dir/* lilo@lilo:/media/lilo/Stick/lilomat/
+4. Copy with ssh: sudo scp -r /home/user/dir/* lilo@lilo:/home/lilo/lilomat/
 
     == Node Red ==
         1. bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
