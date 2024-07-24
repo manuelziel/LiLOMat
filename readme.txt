@@ -50,6 +50,7 @@ print quiz summaries.
 Semantic Versioning -> https://semver.org/
 
 = 0.0.1 beta01 - 2024-07-24 = 
+- Change Shutdown timer to 0 seconds
 - Update and add Questions
 
 = 0.0.1 alpha02 - 2024-07-09 = 
