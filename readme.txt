@@ -49,6 +49,9 @@ print quiz summaries.
 == Changelog ==
 Semantic Versioning -> https://semver.org/
 
+= 0.0.1 beta01 - 2024-07-24 = 
+- Update and add Questions
+
 = 0.0.1 alpha02 - 2024-07-09 = 
 - Update and add Questions
 
